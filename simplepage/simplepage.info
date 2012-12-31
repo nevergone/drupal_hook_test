@@ -1,0 +1,5 @@
+name = Simple page
+description = Egyszerű oldalt megvalósító modul.
+core = 7.x
+version = 7.x-1.x
+package = Hook teszt

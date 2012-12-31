@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * @file
+ * Egyszerű oldalt megvalósító modul.
+ * Bekér néhány szöveget és azt megjeleníti egy adott oldalon.
+ */
+
+
