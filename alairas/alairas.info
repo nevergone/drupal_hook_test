@@ -1,0 +1,7 @@
+name = Aláírás
+description = Ezzel a modullal fogjuk tesztelni a simplepage modul hook-függvényét.
+core = 7.x
+version = 7.x-1.x
+package = Hook teszt
+
+dependencies[] = simplepage
