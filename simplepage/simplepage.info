@@ -1,5 +1,7 @@
 name = Simple page
-description = Egyszerű oldalt megvalósító modul.
+description = Egyszerű oldalt megvalósító modul a hook-ok teszteléséhez.
 core = 7.x
 version = 7.x-1.x
 package = Hook teszt
+
+configure = admin/config/simplepage

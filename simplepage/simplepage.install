@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install fájl a simplepage modulhoz.
+ */
+
+/**
+ * Implements hook_uninstall().
+ *
+ * hook_uninstall() implementáció
+ */
+function simplepage_uninstall() {
+  // Ha eltávolítják a modult, töröljük a szöveg tárolásához használt változót.
+  variable_del('simplepage_text_preprocess');
+  variable_del('simplepage_text_hook');
+}

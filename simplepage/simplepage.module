@@ -7,3 +7,60 @@
  */
 
 
+/**
+ * Implements hook_menu().
+ *
+ * hook_menu() implementáció
+ */
+function simplepage_menu() {
+  // Két oldal: beállításhoz és megjelenítéshez
+  $items = array();
+  $items['admin/config/simplepage'] = array(
+    'title' => 'Simple page settings',
+    'access arguments' => array('simplepage_administer'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('simplepage_settings_form'),
+  );
+  $items['simplepage'] = array(
+    'title' => 'Simple page',
+    'access arguments' => array('simplepage_view'),
+    'page callback' => 'simplepage_page',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ *
+ * hook_permission() implementáció
+ */
+function simplepage_permission() {
+  // Készítünk két jogosultságot: az oldal beállításához és megtekintéséhez
+  $return = array();
+  $return['simplepage_administer'] = array(
+    'title' => t('Administer Simple page'),
+  );
+  $return['simplepage_view'] = array(
+    'title' => t('Simple page view'),
+  );
+  return $return;
+}
+
+/**
+ * Simplepage beállító form.
+ */
+function simplepage_settings_form($form, &$form_state) {
+  $form['simplepage_text_preprocess'] = array(
+    '#type' => 'textfield',
+    // A t() függvény használatával fordíthatóvá válik a megadott szöveg.
+    '#title' => t('theme preprocess'),
+    '#default_value' => variable_get('simplepage_text_preprocess'),
+  );
+  $form['simplepage_text_hook'] = array(
+    '#type' => 'textfield',
+    // A t() függvény használatával fordíthatóvá válik a megadott szöveg.
+    '#title' => t('module_invoke_all()'),
+    '#default_value' => variable_get('simplepage_text_hook'),
+  );
+  return system_settings_form($form);
+}
