@@ -64,3 +64,15 @@ function simplepage_settings_form($form, &$form_state) {
   );
   return system_settings_form($form);
 }
+
+/**
+ * A megadott szövegek megjelenítése.
+ */
+function simplepage_page() {
+  $items = array(
+    'simplepage_text_preprocess' => variable_get('simplepage_text_preprocess'),
+    'simplepage_text_hook' => variable_get('simplepage_text_hook'),
+  );
+  $output = implode(' ', $items);
+  return check_plain($output);
+}
