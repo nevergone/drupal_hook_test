@@ -106,3 +106,16 @@ function simplepage_page() {
   );
   return $output;
 }
+
+/**
+ * MODULNEVE_preprocess_KULCS (lásd: hook_theme()).
+ *
+ * Preprocess függvény a kimenet módosításához.
+ * Ez a függvény belülbírálható a sminkben.
+ */
+function simplepage_preprocess_simplepage(&$variables) {
+  if ($variables['simplepage_text_preprocess']) {
+    // Akármi a kiirandó szöveg, módosítjuk
+    $variables['simplepage_text_preprocess'] .= ' preprocess';
+  }
+}
