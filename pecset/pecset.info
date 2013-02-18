@@ -1,0 +1,5 @@
+name = Pecsét
+description = Ezzel a modullal fogjuk tesztelni a simplepage modul alter hook-ját.
+core = 7.x
+version = 7.x-1.x
+package = Hook teszt
