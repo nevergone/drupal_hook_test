@@ -4,3 +4,13 @@
  * @file
  * Ezzel a modullal fogjuk tesztelni a simplepage modul alter hook-ját.
  */
+
+/**
+ * Implements hook_simplepage_teszt_alter().
+ *
+ * hook_simplepage_teszt_alter() implementáció: drupal_alter() példa
+ */
+function pecset_simplepage_teszt_alter(&$text) {
+  // Egy újabb értéket teszünk a szövegeket tartalmazó változóba.
+  $text[] = '- Pecsét helye -';
+}

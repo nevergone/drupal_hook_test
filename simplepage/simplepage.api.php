@@ -21,6 +21,14 @@ function hook_simplepage_teszt($text) {
 }
 
 /**
+ * A "drupal_alter()" függvény teszteléséhez használt hook.
+ *
+ * @param $text hook_simplepage_teszt() függvényekben megadott szövegek tömbje
+ */
+function hook_simplepage_teszt_alter(&$text) {
+}
+
+/**
  * @} End of "addtogroup hooks".
  */
 

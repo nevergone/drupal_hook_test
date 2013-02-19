@@ -102,6 +102,14 @@ function simplepage_page() {
     $item = check_plain($item);
     drupal_set_message($item);
   }
+  // "drupal_alter()"
+  // Alter hook-kal lehetővé tesszük a már létező adatok megváltoztatását.
+  drupal_alter('simplepage_teszt', $hook_return);
+  drupal_set_message('hook_simplepage_teszt_alter() implementációk által visszaadott értékek:');
+  foreach ($hook_return as $item) {
+    $item = check_plain($item);
+    drupal_set_message($item);
+  }
   // Kimenet összeállítása
   $output = array(
     '#type' => 'markup',
