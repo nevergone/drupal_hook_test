@@ -94,7 +94,14 @@ function simplepage_page() {
   // "theme preprocess"
   $simplepage_text_preprocess = variable_get('simplepage_text_preprocess');
   // "module_invoke_all()"
+  // Meghívunk minden "hook_simplepage_teszt()" függvény-implementációt.
   $simplepage_text_hook = variable_get('simplepage_text_hook');
+  $hook_return = module_invoke_all('simplepage_teszt', $simplepage_text_hook);
+  drupal_set_message('hook_simplepage_teszt() implementációk által visszaadott értékek:');
+  foreach ($hook_return as $item) {
+    $item = check_plain($item);
+    drupal_set_message($item);
+  }
   // Kimenet összeállítása
   $output = array(
     '#type' => 'markup',

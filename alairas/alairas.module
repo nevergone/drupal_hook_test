@@ -4,3 +4,12 @@
  * @file
  * Ezzel a modullal fogjuk tesztelni a simplepage modul hook-függvényét.
  */
+
+/**
+ * Implements hook_simplepage_teszt().
+ *
+ * hook_simplepage_teszt() implementáció: module_invoke_all() példa
+ */
+function alairas_simplepage_teszt($text) {
+  return $text . ' - Ez a alairas_simplepage_teszt() függvényből jött.';
+}
