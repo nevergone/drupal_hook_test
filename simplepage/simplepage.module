@@ -47,6 +47,27 @@ function simplepage_permission() {
 }
 
 /**
+ * Implements hook_theme().
+ *
+ * hook_theme() implementáció
+ */
+function simplepage_theme() {
+  // Készítűnk sminkfüggvényt, "theme_simplepage()" lesz a neve.
+  $return = array();
+  // Az egyes függvényekhez használt kulcs,
+  // ez elé jön a "theme_" a függvénynévben.
+  $return['simplepage'] = array(
+    'variables' => array(
+      // A sminkfüggvény a $variables['simplepage_text_*'] alatt találja meg
+      // a megjelenítendő szövegeket.
+      'simplepage_text_preprocess' => NULL,
+      'simplepage_text_hook' => NULL,
+    ),
+  );
+  return $return;
+}
+
+/**
  * Simplepage beállító form.
  */
 function simplepage_settings_form($form, &$form_state) {
@@ -69,10 +90,34 @@ function simplepage_settings_form($form, &$form_state) {
  * A megadott szövegek megjelenítése.
  */
 function simplepage_page() {
-  $items = array(
-    'simplepage_text_preprocess' => variable_get('simplepage_text_preprocess'),
-    'simplepage_text_hook' => variable_get('simplepage_text_hook'),
+  // "theme preprocess"
+  $simplepage_text_preprocess = variable_get('simplepage_text_preprocess');
+  // "module_invoke_all()"
+  $simplepage_text_hook = variable_get('simplepage_text_hook');
+  // Kimenet összeállítása
+  $output = array(
+    '#type' => 'markup',
+    // hook_theme() megfelelő kulcsa.
+    '#theme' => 'simplepage',
+    // A felhasználó által megadott értékek módosítás nélkül.
+    '#simplepage_text_preprocess' => check_plain($simplepage_text_preprocess),
+    '#simplepage_text_hook' => check_plain($simplepage_text_hook),
   );
-  $output = implode(' ', $items);
-  return check_plain($output);
+  return $output;
+}
+
+/**
+ * Sminkfüggvény az oldal megjelenítéséhez.
+ *
+ * Felüldefiniálható a sminkben SMINKNEVE_simplepage() néven.
+ */
+function theme_simplepage($variables) {
+  $items = array();
+  $items[] = t('theme preprocess:') . ' ' . $variables['simplepage_text_preprocess'];
+  $items[] = t('module_invoke_all():') . ' ' . $variables['simplepage_text_hook'];
+  $output = array(
+    '#theme' => 'item_list',
+    '#items' => $items,
+  );
+  return render($output);
 }
