@@ -54,9 +54,10 @@ function simplepage_permission() {
 function simplepage_theme() {
   // Készítűnk sminkfüggvényt, "theme_simplepage()" lesz a neve.
   $return = array();
-  // Az egyes függvényekhez használt kulcs,
-  // ez elé jön a "theme_" a függvénynévben.
+  // Preprocess függvényekhez használt kulcs.
   $return['simplepage'] = array(
+    // sablonfájl: simplepage.tpl.php
+    'template' => 'simplepage',
     'variables' => array(
       // A sminkfüggvény a $variables['simplepage_text_*'] alatt találja meg
       // a megjelenítendő szövegeket.
@@ -104,20 +105,4 @@ function simplepage_page() {
     '#simplepage_text_hook' => check_plain($simplepage_text_hook),
   );
   return $output;
-}
-
-/**
- * Sminkfüggvény az oldal megjelenítéséhez.
- *
- * Felüldefiniálható a sminkben SMINKNEVE_simplepage() néven.
- */
-function theme_simplepage($variables) {
-  $items = array();
-  $items[] = t('theme preprocess:') . ' ' . $variables['simplepage_text_preprocess'];
-  $items[] = t('module_invoke_all():') . ' ' . $variables['simplepage_text_hook'];
-  $output = array(
-    '#theme' => 'item_list',
-    '#items' => $items,
-  );
-  return render($output);
 }
